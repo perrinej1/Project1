@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-int tokenize(char *input, int *token_count, char ***token_vector)
+int tokenize(char *input, int *token_count, char *tokenv[])
 {
-  //int i = 0;
+  int i = 0;
 
   char *whitespace = " \t";   //creates new token for every space or tab
 
@@ -14,12 +14,15 @@ int tokenize(char *input, int *token_count, char ***token_vector)
 
   line = input;   //sets line to input
   token = strtok(line, whitespace);   //finding first tokenc
+  tokenv[i] = token;
 
   //looping over input until all tokens are found
   while(token != NULL)
   {
     printf("%s\n", token);    //prints token then new line
     token = strtok(NULL, whitespace);   //finding next token
+    tokenv[i] = token;
+    i++;
   }
   return 0;
 }
